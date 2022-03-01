@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="NFSmartMeterDataCreator\**" />
+    <EmbeddedResource Remove="NFSmartMeterDataCreator\**" />
+    <None Remove="NFSmartMeterDataCreator\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.IO.Ports" Version="6.0.0" />
   </ItemGroup>
 
