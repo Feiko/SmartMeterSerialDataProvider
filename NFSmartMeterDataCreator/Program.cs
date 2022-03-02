@@ -26,7 +26,7 @@ namespace NFSmartMeterDataCreator
             _serialDevice.Open();
 
             Timer sendTimer = new Timer(SendData, null, 0, 1000);
-                
+
             Thread.Sleep(Timeout.Infinite);
 
             // Browse our samples repository: https://github.com/nanoframework/samples
@@ -71,7 +71,6 @@ namespace NFSmartMeterDataCreator
             Thread.Sleep(112);
             AtomLite.NeoPixel.SetColor(System.Drawing.Color.Green);
             _serialDevice.Write(crc);
-            Thread.Sleep(820);
         }
 
         static string CreateCrc(byte[] buf)
@@ -96,6 +95,10 @@ namespace NFSmartMeterDataCreator
             }
 
             var crcString = ((UInt16)crc).ToString("X");
+            for (int i = crcString.Length; i < 4; i++)
+            {
+                crcString = "0" + crcString;
+            }
             return $"!{crcString}  ";
         }
     }
