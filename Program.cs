@@ -77,9 +77,13 @@ string CreateCrc(byte[] buf)
                 crc >>= 1;                    // Just shift right
         }
     }
-
     
-    return $"!{ ((UInt16)crc).ToString("X")}  ";
+    var crcString = ((UInt16)crc).ToString("X");
+    for (int i = crcString.Length; i < 4; i++)
+    {
+        crcString = "0" + crcString;
+    }
+    return $"!{crcString}  ";
 }
 
 

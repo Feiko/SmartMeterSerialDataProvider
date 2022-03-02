@@ -25,9 +25,18 @@ namespace NFSmartMeterDataCreator
             _serialDevice.InvertSignalLevels = true;
             _serialDevice.Open();
 
-            while (true)
-            {
-                string TestDataRaw = @$"/XMX5LGF0000453094270
+            Timer sendTimer = new Timer(SendData, null, 0, 1000);
+                
+            Thread.Sleep(Timeout.Infinite);
+
+            // Browse our samples repository: https://github.com/nanoframework/samples
+            // Check our documentation online: https://docs.nanoframework.net/
+            // Join our lively Discord community: https://discord.gg/gCyBu8T
+        }
+
+        private static void SendData(object state)
+        {
+            string TestDataRaw = @$"/XMX5LGF0000453094270
 
 1-3:0.2.8(50)
 0-0:1.0.0({new DateTime(2022, 3, 1).Add(new TimeSpan(System.Environment.TickCount64 * 10000)).ToString("yyMMddhhmmss")}W)
@@ -54,25 +63,16 @@ namespace NFSmartMeterDataCreator
 0-1:24.2.1(210304120005W)(01980.598*m3)
 ";
 
-                string message = TestDataRaw;
-                string crc = CreateCrc(Encoding.UTF8.GetBytes(TestDataRaw + "!"));
-                Console.WriteLine(message + crc);
-                AtomLite.NeoPixel.SetColor(System.Drawing.Color.Red);
-                _serialDevice.Write(message);
-                Thread.Sleep(112);
-                AtomLite.NeoPixel.SetColor(System.Drawing.Color.Green);
-                _serialDevice.Write(crc);
-                Thread.Sleep(820);
-
-            }
-
-            Thread.Sleep(Timeout.Infinite);
-
-            // Browse our samples repository: https://github.com/nanoframework/samples
-            // Check our documentation online: https://docs.nanoframework.net/
-            // Join our lively Discord community: https://discord.gg/gCyBu8T
+            string message = TestDataRaw;
+            string crc = CreateCrc(Encoding.UTF8.GetBytes(TestDataRaw + "!"));
+            Console.WriteLine(message + crc);
+            AtomLite.NeoPixel.SetColor(System.Drawing.Color.Red);
+            _serialDevice.Write(message);
+            Thread.Sleep(112);
+            AtomLite.NeoPixel.SetColor(System.Drawing.Color.Green);
+            _serialDevice.Write(crc);
+            Thread.Sleep(820);
         }
-
 
         static string CreateCrc(byte[] buf)
         {

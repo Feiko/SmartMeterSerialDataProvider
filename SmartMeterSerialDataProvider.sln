@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartMeterSerialDataProvider", "SmartMeterSerialDataProvider.csproj", "{8CD49EF8-1063-46D8-9CDC-993B191A22A7}"
 EndProject
-Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "NFSmartMeterDataCreator", "..\NFSmartMeterDataCreator\NFSmartMeterDataCreator.nfproj", "{0B180627-5215-4037-94E4-803CAA1D3751}"
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "NFSmartMeterDataCreator", "NFSmartMeterDataCreator\NFSmartMeterDataCreator.nfproj", "{0B180627-5215-4037-94E4-803CAA1D3751}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
